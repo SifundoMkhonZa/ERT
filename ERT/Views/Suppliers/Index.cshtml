@@ -1,0 +1,37 @@
+﻿@model IEnumerable<ERT.Models.Supplier>
+
+@{
+	ViewBag.Title = "Index";
+}
+<h2>Supplier Applications</h2>
+<hr />
+<br />
+<div class="row">
+	@foreach (var item in Model)
+	{
+		<div class="col-md-3">
+			<div class="container">
+				<div class="card" style="width:250px">
+					@if (item.Supplier_Image != null)
+					{
+						var base64 = Convert.ToBase64String(item.Supplier_Image);
+						var ImgSource = string.Format("data:image/gif;base64,{0}", base64);
+						<img class="card-img-top" src="@ImgSource" alt="Card image" width="250" height="250" />
+					}
+					<div class="card-body">
+						<p class="card-text">@Html.DisplayFor(modelItem => item.Supplier_Name)</p>
+						<p class="card-text">@Html.DisplayFor(modelItem => item.Supplier_LastName)</p>
+						<p class="card-text">@Html.DisplayFor(modelItem => item.Supplier_ContactNumber)</p>
+						<p class="card-text">@Html.DisplayFor(modelItem => item.Supplier_Email)</p>
+
+
+						<a href="@Url.Action("FullScreen","Suppliers", new {id= item.Supplier_Id })" class="btn btn-primary btn-sm">
+							<p>View full Screen</p>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	}
+</div>
+<br />

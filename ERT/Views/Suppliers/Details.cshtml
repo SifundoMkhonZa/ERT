@@ -1,0 +1,90 @@
+﻿@model ERT.Models.Supplier
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Supplier</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Supplier_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Supplier_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Supplier_Image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Supplier_Image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Supplier_LastName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Supplier_LastName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Supplier_Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Supplier_Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Supplier_ContactNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Supplier_ContactNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Supplier_Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Supplier_Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Supplier_Contract)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Supplier_Contract)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Supplier_Password)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Supplier_Password)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Supplier_Ducuments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Supplier_Ducuments)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Supplier_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,132 @@
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>@ViewBag.Title - My ASP.NET Application</title>
+	@Styles.Render("~/Content/css")
+	@Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+	<div class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				@Html.ActionLink("ABcargo", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+			</div>
+			<div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @if (User.IsInRole("Client"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Details", "Clients")">My Profile</a>
+                        </li>
+
+                        //ERT.Models.ApplicationDbContext db = new ERT.Models.ApplicationDbContext();
+                        //var uid = User.Identity.GetUserId();
+                        //var statusId = (from i in db.OrderStatus
+                        //				where i.Status_Name != "Delivery by "
+                        //				select i.OrderStatus_ID).Single();
+                        //var status = (from i in db.Orders
+                        //			  where i.Client_Id == uid && (i.OrderStatus_ID != statusId || i.OrderStatus_ID != null)
+                        //			  select i.OrderStatus_ID).SingleOrDefault();
+
+                        //if (status != null)
+                        //{
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("TrackOrder", "Checkout")">Track my order</a>
+                        </li>
+                        //}
+
+                    }
+                    @if (User.IsInRole("Supplier"))
+                    {
+                        ERT.Models.ApplicationDbContext db = new ERT.Models.ApplicationDbContext();
+                        var uid = User.Identity.GetUserId();
+                        var contract = (from i in db.Suppliers
+                                        where i.Supplier_Id == uid
+                                        select i.Supplier_Contract).SingleOrDefault();
+                        if (contract == true)
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Create", "Products")">Add shop items</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="@Url.Action("Create", "Categories")">Add items categories</a>
+                            </li>
+                        }
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("SupplierOrders", "Checkout")">Pending Orders</a>
+                        </li>
+
+                    }
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("AdminSchedules", "Checkout")">Requests</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Create", "Drivers")">Add New driver</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Index", "Suppliers")">Supplier Rquest</a>
+                        </li>
+                    }
+                    @if (User.IsInRole("Driver"))
+                    {
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("Details", "Drivers")">My Profile</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("DriverView", "Schedules")">Package Collection</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("DriverDeliveryList", "Schedules")">Package Delivery</a>
+                        </li>
+
+                    }
+                    @if (User.IsInRole("Employee"))
+                    {
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="@Url.Action("EmployeeView", "Schedules")">Warehouse Packaging</a>
+                        </li>
+
+                    }
+
+                    @if (!User.IsInRole("Admin") && !User.IsInRole("Driver") && !User.IsInRole("Employee") && !User.IsInRole("Supplier") && !User.IsInRole("Client"))
+                    {
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("About", "About", "Home")</li>
+                        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                        <li>@Html.ActionLink("Add your shop", "Create", "Suppliers")</li>
+                    }
+                </ul>
+
+
+				@Html.Partial("_LoginPartial")
+			</div>
+		</div>
+	</div>
+	<div class="container body-content">
+		@RenderBody()
+		<hr />
+		<footer>
+			<p>&copy; @DateTime.Now.Year - ABcargo</p>
+		</footer>
+	</div>
+
+	@Scripts.Render("~/bundles/jquery")
+	@Scripts.Render("~/bundles/bootstrap")
+	@RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,42 @@
+﻿@model ERT.Models.Eshop
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Eshop</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Supplier.Supplier_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Supplier.Supplier_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Shop_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Shop_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Shop_Image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Shop_Image)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Shop_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

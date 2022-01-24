@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ERT.Models.Product>
+
+@{
+	ViewBag.Title = "ShopItems";
+}
+<h2>Shop Items</h2>
+<hr />
+<br />
+<div class="row">
+	@foreach (var item in Model)
+	{
+		<div class="col-md-3">
+			<div class="container">
+				<div class="card" style="width:250px">
+					@if (item.Image != null)
+					{
+						var base64 = Convert.ToBase64String(item.Image);
+						var ImgSource = string.Format("data:image/gif;base64,{0}", base64);
+						<img class="card-img-top" src="@ImgSource" alt="Card image" width="250" height="250" />
+					}
+					<div class="card-body">
+						<p>
+							<em>Category: </em>
+							@item.Category.Name
+						</p>
+						<p>
+							<em>Product Name: </em>
+							@item.Product_Name
+						</p>
+						<p>
+							<em>Price:</em>
+							@String.Format("{0:F}", item.Price)
+						</p>
+						<center>
+							<a href="@Url.Action( "AddToCart","ShoppingCart", new { id = item.Product_id })" class="btn btn-primary btn-sm">
+								<p>Add to cart</p>
+							</a>
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	}
+</div>
+<br />

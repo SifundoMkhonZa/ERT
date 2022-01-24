@@ -1,0 +1,73 @@
+﻿@model ERT.Models.Client
+
+@{
+	ViewBag.Title = "Details";
+}
+
+<h2>Client Details</h2>
+<h4>My personal information</h4>
+<hr />
+<div>
+
+	<dl class="dl-horizontal">
+		<dt>
+			@Html.DisplayNameFor(model => model.Client_IDNo)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Client_IDNo)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Client_Name)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Client_Name)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Client_Surname)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Client_Surname)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Client_Cellnumber)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Client_Cellnumber)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Client_Address)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Client_Address)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Client_Email)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Client_Email)
+		</dd>
+
+		<dt>
+			@Html.DisplayNameFor(model => model.Client_Tellnum)
+		</dt>
+
+		<dd>
+			@Html.DisplayFor(model => model.Client_Tellnum)
+		</dd>
+
+	</dl>
+</div>
+<div class="row">
+	<a href='@Url.Action("Edit", "Clients", new { id = Model.Client_Id }, null)' class="btn btn-warning">Edit Info</a>
+</div>

@@ -1,0 +1,50 @@
+﻿@model ERT.Models.Return
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Return</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Order.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Return_Comment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Return_Comment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Item_Image)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Item_Image)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Return_Refund)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Return_Refund)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Return_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

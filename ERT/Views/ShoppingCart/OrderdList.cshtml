@@ -1,0 +1,34 @@
+﻿@model ERT.Models.ViewModels.ShoppingCartViewModel
+
+<table>
+	@foreach (var item in Model.CartItems)
+	{
+		<tr>
+			<td>
+				@if (item.Product.Image != null)
+				{
+					var base64 = Convert.ToBase64String(item.Product.Image);
+					var ImgSource = string.Format("data:image/gif;base64,{0}", base64);
+					<img class="card-img-top" src="@ImgSource" alt="Card image" width="70" height="70" />
+				}
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Product.Product_Name)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Count)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Product.Price)
+			</td>
+		</tr>
+	}
+
+
+</table>
+
+<br />
+@*<li class="fw-normal">Subtotal <span>@Model.CartItems</span></li>*@
+<li class="total-price">Total <span>@Model.CartTotal</span></li>
+<br />
+<br />

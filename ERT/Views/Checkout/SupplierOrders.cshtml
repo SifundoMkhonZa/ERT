@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ERT.Models.OrderDetail>
+
+@{
+	ViewBag.Title = "SupplierOrders";
+}
+
+<h2>Pending Orders</h2>
+<hr />
+<div class="row">
+	@foreach (var item in Model)
+	{
+		ERT.Models.ApplicationDbContext db = new ERT.Models.ApplicationDbContext();
+
+		var contract = (from i in db.Orders
+						where i.OrderId ==item.OrderId
+						select i ).FirstOrDefault();
+		var qrid = (from i in db.QRCodes
+						where i.OrderId == item.OrderId
+						select i).FirstOrDefault();
+		<div class="col-md-3">
+			<div class="shadow p-3 mb-5 bg-white rounded">
+
+				<p>Recipient Name: @Html.DisplayFor(modelItem => contract.FirstName)</p>
+				<p>Recipient Last Name: @Html.DisplayFor(modelItem => contract.LastName)</p>
+				<p>Date Item(s) Ordered: @Html.DisplayFor(modelItem => contract.OrderDate)</p>
+				<p>Item(s) total amount: @Html.DisplayFor(modelItem => contract.Total)</p>
+
+				<a href='@Url.Action("Process", "Checkout", new { id = item.OrderId}, null)' class="btn btn-success">Process Order</a>
+				<a href='@Url.Action("Details", "CartCopies", new { id = qrid.OrderId}, null)' class="btn btn-warning">View Order Details</a>
+			</div>
+		</div>
+	}
+</div>

@@ -1,0 +1,27 @@
+﻿@model ERT.Models.Supplier
+
+@{
+	ViewBag.Title = "FullScreen";
+}
+
+<h2>Application Documents</h2>
+<hr />
+<br />
+
+<div class="table">
+
+	@if (Model.Supplier_Ducuments != null)
+	{
+		var base64 = Convert.ToBase64String(Model.Supplier_Ducuments);
+		var imgsrc = string.Format("data:application/pdf;base64,{0}", base64);
+		<embed src='@imgsrc' height="700" width="100%" />
+	}
+
+</div>
+<br />
+<div class="row">
+	<a href='@Url.Action("Accept", "Suppliers", new { id = Model.Supplier_Id}, null)' class="btn btn-success">Accept</a>
+
+	<a href='@Url.Action("Decline", "Suppliers", new { id = Model.Supplier_Id }, null)' class="btn btn-danger">Decline</a>
+
+</div>

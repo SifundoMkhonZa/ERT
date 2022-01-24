@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ERT.Models.Return>
+
+@{
+	ViewBag.Title = "Index";
+}
+<h2>Orders for return</h2>
+<div class="row">
+	@foreach (var item in Model)
+	{
+		<div class="col-md-3">
+			<div class="container">
+				<div class="card" style="width:250px">
+					@if (item.Item_Image != null)
+					{
+						var base64 = Convert.ToBase64String(item.Item_Image);
+						var ImgSource = string.Format("data:image/gif;base64,{0}", base64);
+						<img class="card-img-top" src="@ImgSource" alt="Card image" width="250" height="250" />
+					}
+					<div class="card-body">
+						<p>
+							@Html.DisplayFor(modelItem => item.Return_Comment)
+						</p>
+						<p>
+							@Html.DisplayFor(modelItem => item.Return_Refund)
+						</p>
+						<center>
+			
+							<a href="@Url.Action("OrdersForReturn","Checkout", new { id = item.OrderId })" class="btn btn-primary btn-sm">
+								<p>Process Order</p>
+							</a>
+
+						</center>
+					</div>
+				</div>
+			</div>
+		</div>
+	}
+</div>
+<br />
